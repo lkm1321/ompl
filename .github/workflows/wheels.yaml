@@ -38,9 +38,6 @@ jobs:
             MACOSX_DEPLOYMENT_TARGET=26.0
             CMAKE_OSX_DEPLOYMENT_TARGET=26.0
             CMAKE_OSX_ARCHITECTURES=${{ matrix.arch }}
-          CIBW_BEFORE_BUILD_MACOS: |
-            echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET"
-            python -c "import sysconfig; print(sysconfig.get_config_var('MACOSX_DEPLOYMENT_TARGET'))"
       - uses: actions/upload-artifact@v4
         with:
           name: wheels-${{ matrix.os }}-${{ matrix.arch }}

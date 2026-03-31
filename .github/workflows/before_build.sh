@@ -74,3 +74,6 @@ elif [ "${build_os}" == "Darwin" ]; then
         install_boost architecture=arm address-model=64 cxxflags="-arch arm64"
     fi
 fi
+
+echo "MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET"
+python -c "import sysconfig; print(sysconfig.get_config_var('MACOSX_DEPLOYMENT_TARGET'))"
