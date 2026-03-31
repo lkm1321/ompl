@@ -40,30 +40,30 @@ jobs:
           name: wheels-${{ matrix.os }}-${{ matrix.arch }}
           path: wheelhouse
 
-  prerelease:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: push-${{ github.ref_name }}-prerelease
-      cancel-in-progress: true
-    needs: [build_wheels]
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          path: wheelhouse
-          pattern: wheels-*
-          merge-multiple: true
+  # prerelease:
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   concurrency:
+  #     group: push-${{ github.ref_name }}-prerelease
+  #     cancel-in-progress: true
+  #   needs: [build_wheels]
+  #   steps:
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         path: wheelhouse
+  #         pattern: wheels-*
+  #         merge-multiple: true
 
-      - name: GitHub release
-        uses: ncipollo/release-action@v1.16.0
-        with:
-          prerelease: true
-          tag: "prerelease"
-          name: "Development Build"
-          allowUpdates: true
-          removeArtifacts: true
-          replacesArtifacts: true
-          artifacts: "wheelhouse/*"
+  #     - name: GitHub release
+  #       uses: ncipollo/release-action@v1.16.0
+  #       with:
+  #         prerelease: true
+  #         tag: "prerelease"
+  #         name: "Development Build"
+  #         allowUpdates: true
+  #         removeArtifacts: true
+  #         replacesArtifacts: true
+  #         artifacts: "wheelhouse/*"
 
   # publish_pypi:
   #   name: Publish to PyPI
