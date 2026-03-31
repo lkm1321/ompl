@@ -15,7 +15,7 @@ jobs:
         #   pybuilds: cp3{10,11,12}-manylinux_x86_64
         #   arch: x86_64
         #   id: linux_x86_64
-        - os: macos-26
+        - os: macos-15
           pybuilds: cp3{11,12}-macosx_arm64
           arch: arm64
           id: macos_arm64
@@ -33,11 +33,11 @@ jobs:
           OMPL_BUILD_ARCH: ${{ matrix.arch }}
           CIBW_BUILD: ${{ matrix.pybuilds }}
           CIBW_SKIP: "cp*-manylinux_i686 cp*-musllinux* cp*-win32"
-          MACOSX_DEPLOYMENT_TARGET: 26.0
-          CIBW_MACOSX_DEPLOYMENT_TARGET: 26.0
+          MACOSX_DEPLOYMENT_TARGET: 15.0
+          CIBW_MACOSX_DEPLOYMENT_TARGET: 15.0
           CIBW_ENVIRONMENT_MACOS: >
-            MACOSX_DEPLOYMENT_TARGET=26.0
-            CMAKE_OSX_DEPLOYMENT_TARGET=26.0
+            MACOSX_DEPLOYMENT_TARGET=15.0
+            CMAKE_OSX_DEPLOYMENT_TARGET=15.0
             CMAKE_OSX_ARCHITECTURES=${{ matrix.arch }}
       - uses: actions/upload-artifact@v4
         with:
